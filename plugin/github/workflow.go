@@ -129,7 +129,7 @@ func getOutputVariables(prevStepId, outputFile string, outputVars []string) step
 
 	if runtime.GOOS == "windows" {
 		cmd = fmt.Sprintf("python -c \"%s\"", outputVarWinScript(
-			outputVars, prevStepId, outputFile))
+			outputVars, outputFile))
 	} else {
 		cmd = fmt.Sprintf("echo \"%s\" > %s", cmd, outputFile)
 	}
@@ -168,7 +168,7 @@ with open(r"%s", "wb") as text_file:
 	return file.Name(), nil
 }
 
-func outputVarWinScript(outputVars []string, prevStepId, outputFile string) string {
+func outputVarWinScript(outputVars []string, outputFile string) string {
 	script := ""
 	for idx, outputVar := range outputVars {
 		prefix := "out = "
